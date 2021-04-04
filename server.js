@@ -45,11 +45,11 @@ function Location( data ) {
 }
 
 
-let newArr = [];
+
 //For Weather:
 //create Route for weather:
 server.get( '/weather', ( req, res ) => {
-
+  let newArr = [];
   //1st get data from weather file:
   let weatherData = require( './data/weather.json' );
 
@@ -62,7 +62,8 @@ server.get( '/weather', ( req, res ) => {
   } );
 
   //3rd send response:
-  res.send( newArr );
+  res.send(newArr );
+
 } );
 
 //create constructor for weather data which will target these data for 5 days:
