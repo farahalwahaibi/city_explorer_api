@@ -54,15 +54,13 @@ server.get( '/weather', ( req, res ) => {
   let weatherData = require( './data/weather.json' );
 
   //2nd create new obj:
-  weatherData.data.forEach( ( val,item )=>{
-    let weatherDescription = weatherData.data[item].weather.description;
-    let timeValid = weatherData.data[item].valid_date;
-    let cityWeather = new Weather( weatherDescription,timeValid );
+  weatherData.data.forEach( ( val,item ) =>{
+    let cityWeather = new Weather( weatherData.data[item] );
     newArr.push( cityWeather );
   } );
 
   //3rd send response:
-  res.send(newArr );
+  res.send( newArr );
 
 } );
 
@@ -79,9 +77,9 @@ server.get( '/weather', ( req, res ) => {
 //     ...
 //   ]
 
-function Weather( weatherDescription,timeValid ) {
-  this.forcast = weatherDescription;
-  this.time = timeValid;
+function Weather( data ) {
+  this.forcast = data.weather.description;
+  this.time = data.valid_date;
 }
 
 
